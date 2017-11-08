@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="PubMan Firefox Suite" verbose="1" preserve-order="true">
+
+	<test name="basic">
+		<classes>
+			<class name="test.java.basics.SubmissionTest"></class>
+			<class name="test.java.basics.SearchTest"></class>
+		</classes>
+	</test>
+
+</suite>
