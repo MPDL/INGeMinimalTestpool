@@ -91,20 +91,20 @@ public class SubmissionTest {
 		WebElement titleBox = driver.findElement(By.id("form1:inputTitleText"));
 		titleBox.sendKeys("Test item for Jenkins integration: " + Calendar.getInstance().getTimeInMillis());
 		
-		WebElement familyNameBox = driver.findElement(By.id("form1:j_idt494:0:inpcreator_persons_person_family_name_optional"));
+		WebElement familyNameBox = driver.findElement(By.xpath("//input[contains(@id, ':0:inpcreator_persons_person_family_name_optional')]"));
 		familyNameBox.sendKeys("Testermann");
-		WebElement organisationNrBox = driver.findElement(By.id("form1:j_idt494:0:inppersons_person_ous_optional"));
+		WebElement organisationNrBox = driver.findElement(By.xpath("//input[contains(@id, ':0:inppersons_person_ous_optional')]"));
 		organisationNrBox.sendKeys("1");
-		WebElement organisationNameBox = driver.findElement(By.id("form1:j_idt542:0:inporganizations_organization_name"));
+		WebElement organisationNameBox = driver.findElement(By.xpath("//textarea[contains(@id, ':0:inporganizations_organization_name')]"));
 		organisationNameBox.sendKeys("MPDL");
 		
 		WebElement datePrintBox = driver.findElement(By.id("form1:txtDatePublishedInPrint"));
 		datePrintBox.sendKeys("2017-11-08");
 		
-		WebElement sourceGenreDropbox = driver.findElement(By.id("form1:j_idt824:0:selChooseSourceGenre"));
+		WebElement sourceGenreDropbox = driver.findElement(By.xpath("//select[contains(@id, ':0:selChooseSourceGenre')]"));
 		Select genreSelect = new Select(sourceGenreDropbox);
 		genreSelect.selectByValue("BOOK");
-		WebElement sourceTitleBox = driver.findElement(By.id("form1:j_idt824:0:inpSourceTitle_Journal"));
+		WebElement sourceTitleBox = driver.findElement(By.xpath("//textarea[contains(@id, ':0:inpSourceTitle_Journal')]"));
 		sourceTitleBox.sendKeys("Test Book");
 		
 		WebElement submitButton = driver.findElement(By.id("form1:lnkSaveAndSubmit"));
