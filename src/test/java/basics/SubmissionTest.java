@@ -36,7 +36,7 @@ public class SubmissionTest {
 	private void setupDriver() {
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
 		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to(startPage);
 	}
