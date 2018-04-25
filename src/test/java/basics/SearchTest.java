@@ -13,6 +13,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -33,7 +35,9 @@ public class SearchTest {
 	
 	private void setupDriver() {
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
-		driver = new FirefoxDriver();
+		FirefoxOptions options = new FirefoxOptions();
+		options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+		driver = new FirefoxDriver(options);
 		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to(startPage);
