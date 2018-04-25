@@ -23,7 +23,7 @@ public class SearchTest {
 	Properties properties;
 	String startPage = "https://dev.inge.mpdl.mpg.de/pubman/faces/HomePage.jsp";
 	
-	String expectedName = "test mod dep";
+	String expectedName = "Test1 Moderator_Depositor";
 	
 	@BeforeClass
 	public void setup() throws FileNotFoundException {
@@ -32,9 +32,9 @@ public class SearchTest {
 	}
 	
 	private void setupDriver() {
+		System.out.println(System.getenv("geckodriver"));
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
 		driver = new FirefoxDriver();
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to(startPage);
 	}

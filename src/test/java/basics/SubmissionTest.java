@@ -25,7 +25,7 @@ public class SubmissionTest {
 	WebDriver driver;
 	Properties properties;
 	String startPage = "https://dev.inge.mpdl.mpg.de/pubman/faces/HomePage.jsp";
-	String expectedName = "test mod dep";
+	String expectedName = "Test1 Moderator_Depositor";
 	
 	@BeforeClass
 	public void setup() throws FileNotFoundException {
@@ -36,7 +36,6 @@ public class SubmissionTest {
 	private void setupDriver() {
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
 		driver = new FirefoxDriver();
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to(startPage);
 	}
@@ -87,7 +86,6 @@ public class SubmissionTest {
 		driver.navigate().to(startPage);
 		driver.findElement(By.id("Header:lnkSubmission")).click();
 		driver.findElement(By.linkText("FULL")).click();
-		driver.findElement(By.linkText("PubMan Test Collection")).click();
 		
 		WebElement titleBox = driver.findElement(By.id("form1:inputTitleText"));
 		titleBox.sendKeys("Test item for Jenkins integration: " + Calendar.getInstance().getTimeInMillis());
