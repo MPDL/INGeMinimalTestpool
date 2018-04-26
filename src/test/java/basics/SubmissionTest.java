@@ -14,6 +14,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -25,6 +27,7 @@ public class SubmissionTest {
 	WebDriver driver;
 	Properties properties;
 	String startPage = "https://dev.inge.mpdl.mpg.de/pubman/faces/HomePage.jsp";
+	
 	String expectedName = "Test1 Moderator_Depositor";
 	
 	@BeforeClass
@@ -35,7 +38,9 @@ public class SubmissionTest {
 	
 	private void setupDriver() {
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
-		driver = new FirefoxDriver();
+		FirefoxOptions options = new FirefoxOptions();
+		options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+		driver = new FirefoxDriver(options);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to(startPage);
 	}
