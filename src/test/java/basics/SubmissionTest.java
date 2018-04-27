@@ -15,9 +15,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -42,7 +44,12 @@ public class SubmissionTest {
 	
 	private void setupDriver() {
 		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
-		FirefoxOptions options = new FirefoxOptions();
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setCapability("marionette", true);
+		FirefoxOptions options = new FirefoxOptions(capabilities);
+		FirefoxBinary binary = new FirefoxBinary();
+		options.setBinary(binary);
+		options.addArguments("--display=1");
 		options.setLogLevel(FirefoxDriverLogLevel.TRACE);
 		driver = new FirefoxDriver(options);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
