@@ -45,7 +45,7 @@ public class SearchTest {
 		options.setCapability("marionette", true);
 		FirefoxBinary binary = new FirefoxBinary();
 		options.setBinary(binary);
-		//options.addArguments("--display=1");
+		options.addArguments("-headless");
 		options.setLogLevel(FirefoxDriverLogLevel.TRACE);
 		driver = new FirefoxDriver(options);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
