@@ -48,6 +48,7 @@ public class SubmissionTest {
 		FirefoxBinary binary = new FirefoxBinary();
 		options.setBinary(binary);
 		options.addArguments("-headless");
+		options.addArguments("--display=1");
 		options.setLogLevel(FirefoxDriverLogLevel.TRACE);
 		driver = new FirefoxDriver(options);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
