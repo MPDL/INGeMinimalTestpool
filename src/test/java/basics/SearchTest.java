@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -106,6 +110,18 @@ public class SearchTest {
 		
 		WebElement usernameBox = driver.findElement(By.xpath("//input[contains(@id, 'inputUsername')]"));
 		Assert.assertTrue(usernameBox.isDisplayed(), "Logout was not successful.");
+	}
+	
+	@AfterMethod
+	public void failureScreenshot(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			try {
+				String screenshotPath = "./target/screenshot" + result.getName() + ".jpg";
+				File screenshot = ((TakesScreenshot) driver).getScreenshotAs(org.openqa.selenium.OutputType.FILE);
+				FileUtils.copyFile(screenshot, new File(screenshotPath));
+			}
+			catch (IOException exc) {}
+		}
 	}
 	
 	@AfterClass
